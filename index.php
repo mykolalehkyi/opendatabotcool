@@ -45,64 +45,29 @@
 				
 				<?php 
 
-					function getData($arr){
-						if(is_array($arr)){
-							foreach ($arr as $key => $value) {
-									getData($value);
-								}	
-						}else{
-							echo $arr;
+					function getData($arr, $i){
+						foreach ($arr as $key => $value) {
+							if (is_array($value)) {
+								if ($key == "0") {
+									getData($value, $i);
+								}else{
+									for ($j=0; $j < $i; $j++) { 
+										echo "- ";
+									}
+									echo "$key: <br>";
+									getData($value, $i + 1);
+								}
+								
+							}else{
+								for ($j=0; $j < $i; $j++) { 
+									echo "> ";
+								}
+								echo "$key : $value<br>";
+							}
 						}
 					}
-					
-					// foreach ($json as $key => $value) {
-					// 	switch ($key) {
-					// 		case 'heads':
-					// 		case 'activities':		
-					// 		case 'beneficiaries':
-					// 		case 'audits':
-					// 			echo "$key:<br>";
-					// 			for ($i=0; $i < count($value); $i++) { 
-					// 				foreach ($value[$i] as $keyin => $valuein) {
-					// 					echo "> $keyin : $valuein <br>";
-					// 				}
-					// 				if ($i != count($value) - 1) {
-					// 					echo "---<br>";
-					// 				}
-					// 			}
 
-					// 			break;
-
-					// 		case 'history':
-					// 			echo "$key:<br>";
-					// 			print_r($value);echo "<br>";
-
-					// 			for ($i=0; $i < count($value); $i++) { 
-
-
-					// 				echo "> date : ".$value[$i]["date"];
-
-					// 				if ($i != count($value) - 1) {
-					// 					echo "---<br>";
-					// 				}
-					// 			}
-					// 			break;
-
-					// 		case 'warnings':
-					// 			echo "$key:<br>";
-
-					// 			break;
-
-					// 		case 'licenses':
-					// 			echo "$key:<br>";
-
-					// 			break;
-							
-					// 		default:
-					// 			echo $key.": ".$value."<br>";
-					// 			break;
-					// 	}
-					// }
+					getData($json, 0);
 
 				?>
 

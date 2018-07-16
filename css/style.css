@@ -1,0 +1,12 @@
+#form{
+	display: flex;
+	height: 38px;
+}
+#btn{
+	width: 20%;
+	min-width: 78px;
+	margin-left: 8px;
+}
+#dd-popup, .cbalink{
+	display: none;
+}
